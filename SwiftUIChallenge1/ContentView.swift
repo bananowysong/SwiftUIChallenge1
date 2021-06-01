@@ -7,18 +7,20 @@
 
 import SwiftUI
 
-enum TemperatureScale: String, CaseIterable {
+enum TemperatureScale: String, CaseIterable, Identifiable {
     case celcius = "Celcius"
     case farenheit = "Farenheit"
     case kelvin = "Kelvin"
+
+    var id: String { self.rawValue }
 }
 
 struct ContentView: View {
     
     let temperatureScales = TemperatureScale.allCases
     @State var valueToBeConverted = ""
-    @State var temperatueScaleToConvert = 1
-    @State var temperatureScaleConverted = 1
+    @State var temperatueScaleToConvert = TemperatureScale.farenheit
+    @State var temperatureScaleConverted = TemperatureScale.farenheit
 
     var convertedValue : Double {
         return 1
@@ -30,8 +32,8 @@ struct ContentView: View {
                 Section {
 //
                     Picker("Choose value", selection: $temperatueScaleToConvert) {
-                        ForEach(0 ..< temperatureScales.count) {
-                            Text(temperatureScales[$0].rawValue)
+                        ForEach(TemperatureScale.allCases, id: \.self) {
+                            Text($0.rawValue)
                         }
                     }.pickerStyle(SegmentedPickerStyle())
                 }
@@ -43,8 +45,8 @@ struct ContentView: View {
                 Section {
 //
                     Picker("Choose value", selection: $temperatureScaleConverted) {
-                        ForEach(0 ..< temperatureScales.count) {
-                            Text(temperatureScales[$0].rawValue)
+                        ForEach(TemperatureScale.allCases, id: \.self) {
+                            Text($0.rawValue)
                         }
                     }.pickerStyle(SegmentedPickerStyle())
                 }
