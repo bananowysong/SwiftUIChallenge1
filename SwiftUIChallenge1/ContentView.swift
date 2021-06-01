@@ -12,7 +12,7 @@ enum TemperatureScale: String, CaseIterable, Identifiable {
     case farenheit = "Farenheit"
     case kelvin = "Kelvin"
 
-    var id: String { self.rawValue }
+    var id: Self { self }
 }
 
 struct ContentView: View {
@@ -32,7 +32,7 @@ struct ContentView: View {
                 Section {
 //
                     Picker("Choose value", selection: $temperatueScaleToConvert) {
-                        ForEach(TemperatureScale.allCases, id: \.self) {
+                        ForEach(TemperatureScale.allCases) {
                             Text($0.rawValue)
                         }
                     }.pickerStyle(SegmentedPickerStyle())
@@ -45,7 +45,7 @@ struct ContentView: View {
                 Section {
 //
                     Picker("Choose value", selection: $temperatureScaleConverted) {
-                        ForEach(TemperatureScale.allCases, id: \.self) {
+                        ForEach(TemperatureScale.allCases) {
                             Text($0.rawValue)
                         }
                     }.pickerStyle(SegmentedPickerStyle())
