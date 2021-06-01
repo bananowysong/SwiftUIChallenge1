@@ -23,7 +23,7 @@ struct ContentView: View {
 
     var convertedTemperature : Double {
         
-        let toBeConverted = Double(temperatureToBeConverted) ?? 0
+        let toBeConverted = Double(temperatureToBeConverted.replacingOccurrences(of: ",", with: ".")) ?? 0
         
         
         switch (temperatueScaleToConvert, temperatureScaleConverted) {
