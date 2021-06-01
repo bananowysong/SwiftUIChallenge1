@@ -17,7 +17,6 @@ enum TemperatureScale: String, CaseIterable, Identifiable {
 
 struct ContentView: View {
     
-    let temperatureScales = TemperatureScale.allCases
     @State var valueToBeConverted = ""
     @State var temperatueScaleToConvert = TemperatureScale.farenheit
     @State var temperatureScaleConverted = TemperatureScale.farenheit
@@ -38,8 +37,8 @@ struct ContentView: View {
                     }.pickerStyle(SegmentedPickerStyle())
                 }
                 
-                Section(header: Text("Value to be converted")) {
-                    TextField("Value to be converted", text: $valueToBeConverted)
+                Section(header: Text("Temperature to be converted")) {
+                    TextField("Temperature to be converted", text: $valueToBeConverted)
                 }
                 
                 Section {
@@ -51,13 +50,13 @@ struct ContentView: View {
                     }.pickerStyle(SegmentedPickerStyle())
                 }
                 
-                Section(header: Text("Converted value")) {
+                Section(header: Text("Converted temperature")) {
                     Text("\(convertedValue, specifier: "%.2f")")
                 }
                 
 
                 
-            }.navigationBarTitle("Converter")
+            }.navigationBarTitle("Temperature Converter")
         }
     }
 }
